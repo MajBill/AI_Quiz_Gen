@@ -1,10 +1,12 @@
 idk smth
 
 winget install Cloudflare.cloudflared
-
+=====================
 (precondition: lm studio local server running + cloudflare)
-
---powershell
+--
+cloudflared tunnel --url http://localhost:8000
+--
+--powershell with cloudflare
 
 Invoke-RestMethod `
 -Uri "https://protocol-super-requiring-certificate.trycloudflare.com/chat" `
@@ -14,3 +16,11 @@ Invoke-RestMethod `
     prompt = "Generate 5 math quiz questions"
     max_tokens = 100
 } | ConvertTo-Json)
+
+
+powershell without cloudflare
+
+Invoke-RestMethod http://localhost:8000/chat -Method POST -ContentType "application/json" -Body '{"prompt":"test"}'
+
+
+==================
