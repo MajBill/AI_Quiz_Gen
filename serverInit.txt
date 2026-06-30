@@ -1,0 +1,16 @@
+idk smth
+
+winget install Cloudflare.cloudflared
+
+(precondition: lm studio local server running + cloudflare)
+
+--powershell
+
+Invoke-RestMethod `
+-Uri "https://protocol-super-requiring-certificate.trycloudflare.com/chat" `
+-Method POST `
+-ContentType "application/json" `
+-Body (@{
+    prompt = "Generate 5 math quiz questions"
+    max_tokens = 100
+} | ConvertTo-Json)
