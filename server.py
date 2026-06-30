@@ -5,24 +5,23 @@ app = FastAPI()
 
 #connect to lmstudio
 client = OpenAI(
-    base_url="http://localhost:1234/v1"
+    base_url="http://localhost:1234/v1",
     api_key = "placeholder"
-
-)
+    )
 
 class ChatRequest(BaseModel):
     prompt: str
-    max_tokens = 100
+    max_tokens: int = 100
 
 @app.post("/chat")
 def chat(request: ChatRequest):
     response = client.chat.completions.create(
-        model="default",
+        model="gemma-3-27b-it-ultra-uncensored-heretic-i1",
         messages=[
             {"role": "user", "content": "you are a quiz generator"},
             {"role": "user", "content": request.prompt}
         ],
-        max_tokens=request.max_tokens
+        max_tokens=request.max_tokens,
         temperature=0.7
     )
     return {"response": response.choices[0].message.content}
