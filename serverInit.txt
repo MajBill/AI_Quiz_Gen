@@ -11,6 +11,7 @@ openai - the official client software development kit (SDK) that allows develope
     with OpenAI's cloud-based REST API, this module abstracts the complexity into simple, native Python 
     classes and functions.
 
+start server in lm studio (openai compatible mode)
 
 to run server.py, go to dir and run bat:
     "uvicorn server:app --host 0.0.0.0 --port 8000"
@@ -25,7 +26,7 @@ to run server.py, go to dir and run bat:
 run:
     winget install Cloudflare.cloudflared 
 =====================
-(precondition: lm studio local server running + fastapi)
+(precondition: lm studio local server running)
 
 
 -- create a cloudflare tunnel to expose localhost 8000 to internet
@@ -35,9 +36,11 @@ cloudflared tunnel --url http://localhost:8000
 
 ==========================
 --powershell with cloudflare
+make sure url has /chat in the end
+
 
 Invoke-RestMethod `
--Uri "https://protocol-super-requiring-certificate.trycloudflare.com/chat" `
+-Uri "https://saving-builders-therapist-individual.trycloudflare.com/chat" `
 -Method POST `
 -ContentType "application/json" `
 -Body (@{
@@ -51,4 +54,4 @@ powershell without cloudflare (connect straight to localhost 8000 withoug going 
 Invoke-RestMethod http://localhost:8000/chat -Method POST -ContentType "application/json" -Body '{"prompt":"test"}'
 
 
-==================
+======================
