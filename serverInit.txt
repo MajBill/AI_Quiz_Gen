@@ -1,11 +1,39 @@
-idk smth
+idk smth, fastapi wrapper for local host
+need "-pip install fastapi uvicorn openai"
 
-winget install Cloudflare.cloudflared
+fastapi - web framework for building api's, used wit uvicorn
+uvicorn - Uvicorn is a web server. It handles network communication - receiving requests from 
+    client applications such as users’ browsers and sending responses to them. It communicates
+    with FastAPI using the Asynchronous Server Gateway Interface (ASGI), a standard API for Python web 
+    servers that run asynchronous code.
+openai - the official client software development kit (SDK) that allows developers to integrate OpenAI's 
+    AI models directly into Python applications. Instead of writing low-level HTTP requests to interact 
+    with OpenAI's cloud-based REST API, this module abstracts the complexity into simple, native Python 
+    classes and functions.
+
+
+to run server.py, go to dir and run bat:
+    "uvicorn server:app --host 0.0.0.0 --port 8000"
+    to create "http://localhost:8000/chat"
+
+#fastapi + uvicorn + pydantic(for formatting) - create a wrapper for localhost 1234,
+    does not expose llm api directly (localhost1234)
+
+
+
 =====================
-(precondition: lm studio local server running + cloudflare)
---
+run:
+    winget install Cloudflare.cloudflared 
+=====================
+(precondition: lm studio local server running + fastapi)
+
+
+-- create a cloudflare tunnel to expose localhost 8000 to internet
 cloudflared tunnel --url http://localhost:8000
---
+-- will give a link that can be used to access local host 8000 from internet, will be unique every time 
+    server is started, need cloudflare acc to make permanent link
+
+==========================
 --powershell with cloudflare
 
 Invoke-RestMethod `
@@ -18,7 +46,7 @@ Invoke-RestMethod `
 } | ConvertTo-Json)
 
 
-powershell without cloudflare
+powershell without cloudflare (connect straight to localhost 8000 withoug going through internet)
 
 Invoke-RestMethod http://localhost:8000/chat -Method POST -ContentType "application/json" -Body '{"prompt":"test"}'
 
