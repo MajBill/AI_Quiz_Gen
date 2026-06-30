@@ -11,7 +11,7 @@ openai - the official client software development kit (SDK) that allows develope
     with OpenAI's cloud-based REST API, this module abstracts the complexity into simple, native Python 
     classes and functions.
 
-start server in lm studio
+start server in lm studio (openai compatible mode)
 
 to run server.py, go to dir and run bat:
     "uvicorn server:app --host 0.0.0.0 --port 8000"
@@ -26,7 +26,7 @@ to run server.py, go to dir and run bat:
 run:
     winget install Cloudflare.cloudflared 
 =====================
-(precondition: lm studio local server running + fastapi)
+(precondition: lm studio local server running)
 
 
 -- create a cloudflare tunnel to expose localhost 8000 to internet
