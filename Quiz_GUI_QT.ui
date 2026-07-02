@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>467</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,14 @@
    <widget class="QLabel" name="lblQuestion">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>90</y>
-      <width>521</width>
+      <x>30</x>
+      <y>20</y>
+      <width>401</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="textFormat">
      <enum>Qt::TextFormat::RichText</enum>
@@ -36,8 +36,8 @@
    <widget class="QPushButton" name="btnBack">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>350</y>
+      <x>30</x>
+      <y>230</y>
       <width>81</width>
       <height>26</height>
      </rect>
@@ -49,8 +49,8 @@
    <widget class="QPushButton" name="btnNext">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>350</y>
+      <x>140</x>
+      <y>230</y>
       <width>81</width>
       <height>26</height>
      </rect>
@@ -62,8 +62,8 @@
    <widget class="QPushButton" name="btnQuit">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>410</y>
+      <x>30</x>
+      <y>290</y>
       <width>81</width>
       <height>26</height>
      </rect>
@@ -72,70 +72,69 @@
      <string>Quit</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="grpRadio">
+   <widget class="QRadioButton" name="radioButton_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>160</y>
-      <width>501</width>
-      <height>151</height>
+      <x>30</x>
+      <y>110</y>
+      <width>98</width>
+      <height>24</height>
      </rect>
     </property>
-    <property name="title">
+    <property name="text">
      <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>50</y>
-       <width>98</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>98</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>98</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>80</y>
-       <width>98</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-    </widget>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_1</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>98</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_1</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>98</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_1</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>98</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup_1</string>
+    </attribute>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -143,7 +142,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>467</width>
      <height>33</height>
     </rect>
    </property>
@@ -152,4 +151,7 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_1"/>
+ </buttongroups>
 </ui>
