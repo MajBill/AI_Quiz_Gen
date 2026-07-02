@@ -5,8 +5,8 @@ import Quiz_Utility as qu
 
 # Only needed for access to command line arguments
 import sys
-# use Pyuic6 xxx.ui -o xxx.py to convert ui to py
-# use Py
+# use PySide6-uic xxx.ui -o xxx.py to convert ui to py
+# use PySide6
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -26,6 +26,9 @@ class MainWindow(QMainWindow):
 
         self.ui.currentQuestion = -1
 
+def open_second(self):         # To open any other window and hide self
+        self.second.show()     # Show second window
+        self.hide()            # Optional
 
 def main():
     app = QApplication(sys.argv)
