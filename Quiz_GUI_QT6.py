@@ -26,9 +26,6 @@ class MainWindow(QMainWindow):
 
         self.ui.currentQuestion = -1
 
-def open_second(self):         # To open any other window and hide self
-        self.second.show()     # Show second window
-        self.hide()            # Optional
 
 def main():
     app = QApplication(sys.argv)
