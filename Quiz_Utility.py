@@ -73,15 +73,7 @@ def loadGUI(ui):
     ui.buttonGroup_1.setExclusive(False)
     ui.radioButton_1.setChecked(False)   
     ui.buttonGroup_1.setExclusive(True)
-    # ui.radioButton_2.setAutoExclusive(False)
-    # ui.radioButton_2.setChecked(False) 
-    # ui.radioButton_2.setAutoExclusive(True)
-    # ui.radioButton_3.setAutoExclusive(False)
-    # ui.radioButton_3.setChecked(False)
-    # ui.radioButton_3.setAutoExclusive(True)
-    # ui.radioButton_4.setAutoExclusive(False)
-    # ui.radioButton_4.setChecked(False)
-    # ui.radioButton_4.setAutoExclusive(True)
+
 
     # display question and answers
     ui.lblQuestion.setText(questions[ui.currentQuestion].question)
@@ -113,7 +105,6 @@ def clearGUI(ui):
     ui.radioButton_2.setText('')
     ui.radioButton_3.setText('')
     ui.radioButton_4.setText('')
-
 
 
 if __name__ == "__main__":
