@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         self.ui.radioButton_3.clicked.connect(lambda: qu.saveAnswer(self.ui,2))
         self.ui.radioButton_4.clicked.connect(lambda: qu.saveAnswer(self.ui,3))
 
-        self.ui.currentQuestion = -1
+        self.ui.currentQuestion = 0
 
         self.ui.btnConfirm.clicked.connect(lambda: change_page(self,"pageLoading"))
 
@@ -34,6 +34,7 @@ def change_page(self, pageName):
     if pageName == "pageLoading":
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
         QTimer.singleShot(5000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
+        qu.loadGUI(self.ui)
     else:
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageName)
 
