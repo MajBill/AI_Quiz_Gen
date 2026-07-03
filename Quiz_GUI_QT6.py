@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QFile
+from PySide6.QtCore import QTimer
 from ui_mainwindow import Ui_MainWindow
 import Quiz_Utility as qu
 
@@ -26,6 +27,15 @@ class MainWindow(QMainWindow):
 
         self.ui.currentQuestion = -1
 
+        self.ui.btnConfirm.clicked.connect(lambda: change_page(self,"pageLoading"))
+
+
+def change_page(self, pageName):
+    if pageName == "pageLoading":
+        self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
+        QTimer.singleShot(5000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
+    else:
+        self.ui.stackedWidget.setCurrentWidget(self.ui.pageName)
 
 def main():
     app = QApplication(sys.argv)

@@ -1,3 +1,5 @@
+#strictly for server initialization 
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import OpenAI
