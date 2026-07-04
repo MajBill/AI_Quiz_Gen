@@ -56,6 +56,7 @@ def tryNew(self):
     Assume quesses have been cleared 
         and currentQuestion set to 0 in submit()
     '''
+    self.ui.btnNext.setEnabled(True)
     self.ui.stackedWidget.setCurrentWidget(self.ui.pageHome)
     
 def trySame(self):
@@ -66,6 +67,7 @@ def trySame(self):
         and currentQuestion set to 0 in submit()
     '''
     self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz)
+    self.ui.btnNext.setEnabled(True)
     qu.dislayQuestion(self.ui)         # display first question
  
 def main():

@@ -11,6 +11,7 @@ class Question():
         self.answerList = []
 
 questions = []
+radioButtons = []  # easier to reference them
 
 def initData(ui):  #for testing purposes
     '''
@@ -35,7 +36,7 @@ def initData(ui):  #for testing purposes
             quest.answerList = q[2]
             questions.append(quest)
     '''
-    questions = []   # new list of questions
+    
     quest = Question()
     quest.question = "1. What is the value of x in the equation x/2 + 3 = 7?"
     quest.answer = "4"
@@ -55,7 +56,7 @@ def initData(ui):  #for testing purposes
     questions.append(quest)
 
     quest = Question()
-    quest.question = "4.What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
+    quest.question = "4. What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
     quest.answer = "40"
     quest.answerList = ["30", "40", "50", "60"]
     questions.append(quest)
@@ -65,6 +66,12 @@ def initData(ui):  #for testing purposes
     quest.answer = "48"
     quest.answerList = ["32", "48", "64", "80"]
     questions.append(quest)
+
+    # create list of radio button objects (indexed list is easier to use)
+    radioButtons.append(ui.radioButton_1)
+    radioButtons.append(ui.radioButton_2)
+    radioButtons.append(ui.radioButton_3)
+    radioButtons.append(ui.radioButton_4)
 
 def submit(ui):
     '''
@@ -94,25 +101,30 @@ def loadNext(ui):
     increment question pointer if not on last question
     and call dislayQuestion()
     '''
-    # increment question counter
-    if ui.currentQuestion >= len(questions) - 1:
-        ui.currentQuestion -= 1
-        # evaluate score if done with last question
-        ui.btnSubmit.setVisible(True)
-        #submit(ui)
-        return
+    # increment question counter if not on last question
     
+    ui.btnBack.setEnabled(True)
     ui.currentQuestion += 1
+    if ui.currentQuestion >= len(questions) - 1:
+        
+        # evaluate score if done with last question
+        ui.btnNext.setEnabled(False)
+        ui.btnSubmit.setVisible(True)
+        
     dislayQuestion(ui)
+    
 
 def loadPrevious(ui):
     '''
     decrement question pointer if not on first question
     and call dislayQuestion()
     '''
-    if ui.currentQuestion == 0:
-        return
+    ui.btnNext.setEnabled(True)
     ui.currentQuestion -= 1
+    
+    if ui.currentQuestion == 0:
+        ui.btnBack.setEnabled(False)
+    
     dislayQuestion(ui)
 
 def dislayQuestion(ui):
@@ -129,23 +141,31 @@ def dislayQuestion(ui):
 
     # display question and answers
     ui.lblQuestion.setText(questions[ui.currentQuestion].question)
-    ui.radioButton_1.setText(questions[ui.currentQuestion].answerList[0])
-    ui.radioButton_2.setText(questions[ui.currentQuestion].answerList[1])
-    ui.radioButton_3.setText(questions[ui.currentQuestion].answerList[2])
-    ui.radioButton_4.setText(questions[ui.currentQuestion].answerList[3])
+    for index in range(4):
+        radioButtons[index].setText(questions[ui.currentQuestion].answerList[index])
+    # ui.radioButton_2.setText(questions[ui.currentQuestion].answerList[1])
+    # ui.radioButton_3.setText(questions[ui.currentQuestion].answerList[2])
+    # ui.radioButton_4.setText(questions[ui.currentQuestion].answerList[3])
 
     # reset previously selected answer if there is one
     #   I have to do it this way since there is no collection of widgets in Qt.
-    if questions[ui.currentQuestion].guess > -1:
-        if questions[ui.currentQuestion].guess == 0:
-            ui.radioButton_1.setChecked(True)
-        elif questions[ui.currentQuestion].guess == 1:
-            ui.radioButton_2.setChecked(True)
-        elif questions[ui.currentQuestion].guess == 2:
-            ui.radioButton_3.setChecked(True)
-        elif questions[ui.currentQuestion].guess == 3:
-            ui.radioButton_4.setChecked(True)
-    
+    if not questions[ui.currentQuestion].guess == '':
+        for index, value in enumerate(questions[ui.currentQuestion].answerList):
+            if  questions[ui.currentQuestion].guess == questions[ui.currentQuestion].answerList[index]:
+                radioButtons[index].setChecked(True)
+        
+        # if questions[ui.currentQuestion].guess == 0:
+        #     ui.radioButton_1.setChecked(True)
+        # elif questions[ui.currentQuestion].guess == 1:
+        #     ui.radioButton_2.setChecked(True)
+        # elif questions[ui.currentQuestion].guess == 2:
+        #     ui.radioButton_3.setChecked(True)
+        # elif questions[ui.currentQuestion].guess == 3:
+        #     ui.radioButton_4.setChecked(True)
+    if ui.currentQuestion == 0:
+        ui.btnBack.setEnabled(False)
+
+
 def saveAnswer(ui, value):
     '''
     save the text of the currently selected radio button
