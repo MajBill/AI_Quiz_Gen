@@ -40,38 +40,38 @@ in the following format: ['question','correct_answer','Choices'[]]"""
     Read it into the questions class with:
         for index, q in enumerate(question_list, start=1)
             quest = Question()
-            quest.question = f"{index}. {q[0]}"
+            quest.question = f"{q[0]}"
             quest.answer = q[1]
             quest.answerList = q[2]
             questions.append(quest)
     '''
     
     quest = Question()
-    quest.question = "1. What is the value of x in the equation x/2 + 3 = 7?"
+    quest.question = "What is the value of x in the equation x/2 + 3 = 7?"
     quest.answer = "4"
     quest.answerList = ["1", "3", "5", "9"]
     questions.append(quest)
 
     quest = Question()
-    quest.question = "2.What is the area of a triangle with base 10 cm and height 6 cm?"
+    quest.question = "What is the area of a triangle with base 10 cm and height 6 cm?"
     quest.answer = "60"
     quest.answerList = ["40", "60", "80", "90"]
     questions.append(quest)
 
     quest = Question()
-    quest.question = "3. What is the value of y in the equation y - 2 = 9?"
+    quest.question = "What is the value of y in the equation y - 2 = 9?"
     quest.answer = "11"
     quest.answerList =  ["7", "9", "11", "13"]
     questions.append(quest)
 
     quest = Question()
-    quest.question = "4. What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
+    quest.question = "What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
     quest.answer = "40"
     quest.answerList = ["30", "40", "50", "60"]
     questions.append(quest)
 
     quest = Question()
-    quest.question = "5. What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?"
+    quest.question = "What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?"
     quest.answer = "48"
     quest.answerList = ["32", "48", "64", "80"]
     questions.append(quest)
@@ -116,9 +116,9 @@ def loadNext(ui):
     ui.btnBack.setEnabled(True)
     ui.currentQuestion += 1
     if ui.currentQuestion >= len(questions) - 1:
-        
-        # evaluate score if done with last question
         ui.btnNext.setEnabled(False)
+        # evaluate score if done with last question
+        
         ui.btnSubmit.setVisible(True)
         
     dislayQuestion(ui)
@@ -130,7 +130,9 @@ def loadPrevious(ui):
     and call dislayQuestion()
     '''
     ui.btnNext.setEnabled(True)
-    ui.currentQuestion -= 1
+
+    if not ui.currentQuestion == 0:
+        ui.currentQuestion -= 1
     
     if ui.currentQuestion == 0:
         ui.btnBack.setEnabled(False)
@@ -160,10 +162,9 @@ def dislayQuestion(ui):
         for index, value in enumerate(questions[ui.currentQuestion].answerList):
             if  questions[ui.currentQuestion].guess == questions[ui.currentQuestion].answerList[index]:
                 radioButtons[index].setChecked(True)
-        
-    if ui.currentQuestion == 0:
-        ui.btnBack.setEnabled(False)
 
+    # show progress
+    ui.lblProgress.setText(f'Question {ui.currentQuestion + 1} of {len(questions)} questions')
 
 def saveAnswer(ui, value):
     '''
