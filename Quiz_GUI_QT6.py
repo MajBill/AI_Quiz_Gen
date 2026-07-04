@@ -46,6 +46,7 @@ def change_page(self, pageName):
     '''
     if pageName == "pageLoading":
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
+        qu.initData(self.ui)
         QTimer.singleShot(2000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
         qu.dislayQuestion(self.ui)
     else:
@@ -73,8 +74,8 @@ def trySame(self):
     qu.dislayQuestion(self.ui)         # display first question
  
 def clear(self):
-    self.ui.lblTopic.setText('')
-    self.ui.lblMaxLength.setText('')
+    self.ui.txtTopic.setText('')
+    self.ui.txtMaxLength.setText('')
 
 def main():
     '''
@@ -84,7 +85,7 @@ def main():
     app = QApplication(sys.argv)
 
     window = MainWindow()
-    qu.initData(window.ui)
+    
     window.show()
 
     sys.exit(app.exec())

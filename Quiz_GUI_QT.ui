@@ -39,7 +39,7 @@
          <string>Please enter the topic for this quiz:</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="lblTopic">
+       <widget class="QTextEdit" name="txtTopic">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -91,7 +91,7 @@
          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QTextEdit" name="lblMaxLength">
+       <widget class="QTextEdit" name="txtMaxLength">
         <property name="geometry">
          <rect>
           <x>150</x>

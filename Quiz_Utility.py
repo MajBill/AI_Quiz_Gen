@@ -15,6 +15,15 @@ radioButtons = []  # easier to reference them
 
 def initData(ui):  #for testing purposes
     '''
+    Load the questions list with new questions from an AI model
+    using topic and number from pageHome.
+    '''
+    prompt = f"""You are a quiz generator. Your task is to Generate a list of {ui.txtMaxLength.toPlainText()} \
+multiple choice {ui.txtTopic.toPlainText()} quiz questions and format them into a python list \
+in the following format: ['question','correct_answer','Choices'[]]"""
+    '''
+    Here we will send this prompt to the AI Model and await a response
+
     Now hard coded
     later it will be filled with data from the AI call
 
