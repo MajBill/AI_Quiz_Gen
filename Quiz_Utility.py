@@ -1,5 +1,6 @@
 import Quiz_GUI_QT6
 import requests
+import json
 
 class Question():
     '''
@@ -204,13 +205,18 @@ def generate_quest(topic, num_questions):
         "max_tokens": 5000
     }
     
-    response = requests.post(url, json=payload)
-    
-    if response.status_code == 200 and not response.json().get("response") == 'jsonError':
-        ans = response.json().get("response", "")
-        print(ans)
-    else:
+    response = requests.post(url, json=payload)  #calls the FastAPI server /chat
+    if response.status_code != 200:
         return f"Error: {response.status_code} - {response.text}"
+    
+    try:
+        json_response = json.loads(response.content.decode("utf-8"))
+    except json.JSONDecodeError:
+        return 'jsonError'
+    temp = json_response[0]
+    json_response = json.loads(temp)    
+
+    # print(json_response[0])
 
 if __name__ == "__main__":
     Quiz_GUI_QT6.main()
