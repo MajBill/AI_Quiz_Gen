@@ -1,4 +1,5 @@
 import Quiz_GUI_QT6
+import requests
 
 class Question():
     '''
@@ -190,6 +191,26 @@ def clearGUI(ui):
     ui.radioButton_2.setText('')
     ui.radioButton_3.setText('')
     ui.radioButton_4.setText('')
+
+def generate_quest(topic, num_questions):
+    '''
+    Send a request to the FastAPI server to generate quiz questions based on the provided topic and number of questions.
+    '''
+    url = "http://localhost:8000/chat"
+    prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}'"
+    
+    payload = {
+        "prompt": prompt,
+        "max_tokens": 5000
+    }
+    
+    response = requests.post(url, json=payload)
+    
+    if response.status_code == 200 and not response.json().get("response") == 'jsonError':
+        ans = response.json().get("response", "")
+        print(ans)
+    else:
+        return f"Error: {response.status_code} - {response.text}"
 
 if __name__ == "__main__":
     Quiz_GUI_QT6.main()

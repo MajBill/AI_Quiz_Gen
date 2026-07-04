@@ -3,6 +3,7 @@ from PySide6.QtCore import QFile
 from PySide6.QtCore import QTimer
 from ui_mainwindow import Ui_MainWindow
 import Quiz_Utility as qu
+from server_start import start_server
 
 # Only needed for access to command line arguments
 import sys
@@ -46,8 +47,10 @@ def change_page(self, pageName):
     '''
     if pageName == "pageLoading":
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
-        qu.initData(self.ui)
+        QApplication.processEvents() #refresh gui
+        # qu.initData(self.ui)
         QTimer.singleShot(2000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
+        qu.generate_quest(self.ui.txtTopic.toPlainText(), int(self.ui.txtMaxLength.toPlainText()))
         qu.dislayQuestion(self.ui)
     else:
         self.ui.stackedWidget.setCurrentWidget(getattr(self.ui, pageName))
@@ -83,6 +86,8 @@ def main():
     but added initdata()
     '''
     app = QApplication(sys.argv)
+
+    start_server()  # Start the FastAPI server in a subprocess
 
     window = MainWindow()
     
