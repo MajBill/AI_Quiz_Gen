@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
         self.ui.btnNext.clicked.connect(lambda: qu.loadNext(self.ui))
         self.ui.btnBack.clicked.connect(lambda: qu.loadPrevious(self.ui))
         self.ui.btnQuit.clicked.connect(lambda: quit())
+        self.ui.btnQuit_2.clicked.connect(lambda: quit())
 
         self.ui.radioButton_1.clicked.connect(lambda: qu.saveAnswer(self.ui, 0))
         self.ui.radioButton_2.clicked.connect(lambda: qu.saveAnswer(self.ui, 1))
@@ -30,6 +31,7 @@ class MainWindow(QMainWindow):
 
         self.ui.btnConfirm.clicked.connect(lambda: change_page(self,"pageLoading"))
         self.ui.btnSubmit.clicked.connect(lambda: qu.submit(self.ui))
+        self.ui.btnClear.clicked.connect(lambda: clear(self))
         self.ui.btnTryNew.clicked.connect(lambda: tryNew(self))
         self.ui.btnTrySame.clicked.connect(lambda: trySame(self))
 
@@ -70,6 +72,10 @@ def trySame(self):
     self.ui.btnNext.setEnabled(True)
     qu.dislayQuestion(self.ui)         # display first question
  
+def clear(self):
+    self.ui.lblTopic.setText('')
+    self.ui.lblMaxLength.setText('')
+
 def main():
     '''
     mostly boilerplate

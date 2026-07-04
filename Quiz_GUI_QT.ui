@@ -25,10 +25,15 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>30</y>
           <width>521</width>
-          <height>61</height>
+          <height>41</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Please enter the topic for this quiz:</string>
@@ -37,7 +42,7 @@
        <widget class="QTextEdit" name="lblTopic">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>150</x>
           <y>90</y>
           <width>301</width>
           <height>64</height>
@@ -47,33 +52,49 @@
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>100</y>
-          <width>61</width>
+          <width>111</width>
           <height>41</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Topic:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>170</y>
-          <width>61</width>
+          <width>111</width>
           <height>41</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Max Length:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
        <widget class="QTextEdit" name="lblMaxLength">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>150</x>
           <y>160</y>
           <width>301</width>
           <height>64</height>
@@ -83,11 +104,16 @@
        <widget class="QPushButton" name="btnConfirm">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>270</y>
+          <x>320</x>
+          <y>260</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Confirm</string>
@@ -96,11 +122,16 @@
        <widget class="QPushButton" name="btnClear">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>270</y>
+          <x>170</x>
+          <y>260</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Clear</string>
@@ -112,11 +143,16 @@
        <widget class="QLabel" name="lblQuestion">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>501</width>
-          <height>81</height>
+          <x>80</x>
+          <y>30</y>
+          <width>471</width>
+          <height>61</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -131,11 +167,16 @@
        <widget class="QPushButton" name="btnQuit">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>350</y>
+          <x>80</x>
+          <y>290</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Quit</string>
@@ -144,11 +185,16 @@
        <widget class="QPushButton" name="btnNext">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>310</y>
+          <x>270</x>
+          <y>250</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Next</string>
@@ -157,11 +203,16 @@
        <widget class="QPushButton" name="btnBack">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>310</y>
+          <x>80</x>
+          <y>250</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Back</string>
@@ -170,11 +221,16 @@
        <widget class="QRadioButton" name="radioButton_3">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>230</y>
-          <width>171</width>
+          <x>80</x>
+          <y>170</y>
+          <width>200</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -186,11 +242,16 @@
        <widget class="QRadioButton" name="radioButton_4">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>260</y>
-          <width>161</width>
+          <x>80</x>
+          <y>200</y>
+          <width>200</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -202,11 +263,16 @@
        <widget class="QRadioButton" name="radioButton_1">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>170</y>
-          <width>190</width>
+          <x>80</x>
+          <y>110</y>
+          <width>200</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -218,11 +284,16 @@
        <widget class="QRadioButton" name="radioButton_2">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>200</y>
-          <width>201</width>
+          <x>80</x>
+          <y>140</y>
+          <width>200</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string/>
@@ -234,14 +305,32 @@
        <widget class="QPushButton" name="btnSubmit">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>350</y>
+          <x>270</x>
+          <y>290</y>
           <width>81</width>
           <height>26</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Submit</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>10</y>
+          <width>211</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
@@ -249,11 +338,16 @@
        <widget class="QPushButton" name="btnTryNew">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>310</y>
+          <x>170</x>
+          <y>270</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>New set</string>
@@ -262,11 +356,16 @@
        <widget class="QPushButton" name="btnTrySame">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>310</y>
+          <x>50</x>
+          <y>270</y>
           <width>81</width>
           <height>26</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Same set</string>
@@ -275,11 +374,16 @@
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>48</x>
-          <y>280</y>
+          <x>50</x>
+          <y>200</y>
           <width>241</width>
           <height>20</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Try again?</string>
@@ -289,13 +393,36 @@
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>50</y>
+          <y>80</y>
           <width>441</width>
-          <height>181</height>
+          <height>91</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnQuit_2">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>320</y>
+          <width>71</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Quit</string>
         </property>
        </widget>
       </widget>
