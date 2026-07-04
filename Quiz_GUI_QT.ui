@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageHome">
        <widget class="QLabel" name="label">
@@ -230,6 +230,19 @@
         <attribute name="buttonGroup">
          <string notr="true">buttonGroup_1</string>
         </attribute>
+       </widget>
+       <widget class="QPushButton" name="btnSubmit">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>350</y>
+          <width>81</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Submit</string>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="pageResults">

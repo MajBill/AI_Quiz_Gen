@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.btnSubmit.setVisible(False)
         
 
         self.ui.btnNext.clicked.connect(lambda: qu.loadNext(self.ui))
@@ -28,15 +29,20 @@ class MainWindow(QMainWindow):
         self.ui.currentQuestion = 0
 
         self.ui.btnConfirm.clicked.connect(lambda: change_page(self,"pageLoading"))
+        self.ui.btnSubmit.clicked.connect(lambda: qu.submit(self.ui))
+        self.ui.btnTryNew.clicked.connect(lambda: change_page(self,"pageHome"))
+        self.ui.btnTrySame.clicked.connect(lambda: change_page(self,"pageLoading"))
 
+def change_page(self, pageName, caller = ''):
+    qu.clearGUI(self.ui)
 
-def change_page(self, pageName):
     if pageName == "pageLoading":
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
-        QTimer.singleShot(5000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
+        QTimer.singleShot(2000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
         qu.loadGUI(self.ui)
     else:
-        self.ui.stackedWidget.setCurrentWidget(self.ui.pageName)
+        self.ui.stackedWidget.setCurrentWidget(getattr(self.ui, pageName))
+
 
 def main():
     app = QApplication(sys.argv)

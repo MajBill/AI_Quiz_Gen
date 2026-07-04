@@ -10,7 +10,7 @@ class Question():
 
 questions = []
 
-def initData(ui):
+def initData(ui):  #for testing purposes?
     
     quest = Question()
     quest.question = "1. what are you?"
@@ -40,12 +40,15 @@ def initData(ui):
 def submit(ui):
     # evealuate answers
     score = 0
+    total = len(questions)
     for quest in questions:
        if quest.guess == quest.answer:
            score += 1
-
-    clearGUI(ui)
-    ui.lblQuestion.setText(f"Your score is: {score}.")
+    ui.lblResults.setText(f"Your score is: {score}/{total}")
+    ui.stackedWidget.setCurrentWidget(ui.pageResults)
+    ui.currentQuestion = 0 
+    # clearGUI(ui)
+    
 
 
 def loadNext(ui):
@@ -53,7 +56,8 @@ def loadNext(ui):
     if ui.currentQuestion >= len(questions) - 1:
         ui.currentQuestion -= 1
         # evaluate score if done with last question
-        submit(ui)
+        ui.btnSubmit.setVisible(True)
+        #submit(ui)
         return
     
     ui.currentQuestion += 1
