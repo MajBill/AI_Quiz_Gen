@@ -44,9 +44,13 @@ def submit(ui):
     for quest in questions:
        if quest.guess == quest.answer:
            score += 1
-    ui.lblResults.setText(f"Your score is: {score}/{total}")
+    ui.lblResults.setText(f"Your score is: {score}/{total}")  #replace with text edit
     ui.stackedWidget.setCurrentWidget(ui.pageResults)
+
     ui.currentQuestion = 0 
+
+    for quest in questions:
+        quest.guess = -1
     # clearGUI(ui)
     
 
@@ -104,6 +108,10 @@ def saveAnswer(ui, value):
     questions[ui.currentQuestion].guess = value
 
 def clearGUI(ui):
+    ui.radioButton_1.setChecked(True)  # sets all others to false
+    ui.buttonGroup_1.setExclusive(False)
+    ui.radioButton_1.setChecked(False)   
+    ui.buttonGroup_1.setExclusive(True)
     ui.lblQuestion.setText('')
     ui.radioButton_1.setText('')
     ui.radioButton_2.setText('')

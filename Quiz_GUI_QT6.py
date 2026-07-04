@@ -30,12 +30,10 @@ class MainWindow(QMainWindow):
 
         self.ui.btnConfirm.clicked.connect(lambda: change_page(self,"pageLoading"))
         self.ui.btnSubmit.clicked.connect(lambda: qu.submit(self.ui))
-        self.ui.btnTryNew.clicked.connect(lambda: change_page(self,"pageHome"))
-        self.ui.btnTrySame.clicked.connect(lambda: change_page(self,"pageLoading"))
+        self.ui.btnTryNew.clicked.connect(lambda: tryNew(self))
+        self.ui.btnTrySame.clicked.connect(lambda: trySame(self))
 
-def change_page(self, pageName, caller = ''):
-    qu.clearGUI(self.ui)
-
+def change_page(self, pageName):
     if pageName == "pageLoading":
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageLoading)
         QTimer.singleShot(2000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
@@ -43,7 +41,16 @@ def change_page(self, pageName, caller = ''):
     else:
         self.ui.stackedWidget.setCurrentWidget(getattr(self.ui, pageName))
 
+def tryNew(self):
+    qu.clearGUI(self.ui)
+    self.ui.stackedWidget.setCurrentWidget(self.ui.pageHome)
+    
 
+def trySame(self):
+    self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz)
+    qu.loadGUI(self.ui)
+
+    
 def main():
     app = QApplication(sys.argv)
 
