@@ -77,6 +77,7 @@ in the following format: ['question','correct_answer','Choices'[]]"""
     questions.append(quest)
 
     # create list of radio button objects (indexed list is easier to use)
+    radioButtons.clear()
     radioButtons.append(ui.radioButton_1)
     radioButtons.append(ui.radioButton_2)
     radioButtons.append(ui.radioButton_3)
@@ -152,25 +153,14 @@ def dislayQuestion(ui):
     ui.lblQuestion.setText(questions[ui.currentQuestion].question)
     for index in range(4):
         radioButtons[index].setText(questions[ui.currentQuestion].answerList[index])
-    # ui.radioButton_2.setText(questions[ui.currentQuestion].answerList[1])
-    # ui.radioButton_3.setText(questions[ui.currentQuestion].answerList[2])
-    # ui.radioButton_4.setText(questions[ui.currentQuestion].answerList[3])
+
 
     # reset previously selected answer if there is one
-    #   I have to do it this way since there is no collection of widgets in Qt.
     if not questions[ui.currentQuestion].guess == '':
         for index, value in enumerate(questions[ui.currentQuestion].answerList):
             if  questions[ui.currentQuestion].guess == questions[ui.currentQuestion].answerList[index]:
                 radioButtons[index].setChecked(True)
         
-        # if questions[ui.currentQuestion].guess == 0:
-        #     ui.radioButton_1.setChecked(True)
-        # elif questions[ui.currentQuestion].guess == 1:
-        #     ui.radioButton_2.setChecked(True)
-        # elif questions[ui.currentQuestion].guess == 2:
-        #     ui.radioButton_3.setChecked(True)
-        # elif questions[ui.currentQuestion].guess == 3:
-        #     ui.radioButton_4.setChecked(True)
     if ui.currentQuestion == 0:
         ui.btnBack.setEnabled(False)
 

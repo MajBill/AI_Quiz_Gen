@@ -95,9 +95,9 @@
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>160</y>
+          <y>180</y>
           <width>301</width>
-          <height>64</height>
+          <height>31</height>
          </rect>
         </property>
        </widget>
@@ -392,9 +392,9 @@
        <widget class="QLabel" name="lblResults">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>60</x>
           <y>80</y>
-          <width>441</width>
+          <width>431</width>
           <height>91</height>
          </rect>
         </property>
