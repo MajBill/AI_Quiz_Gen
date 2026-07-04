@@ -205,18 +205,20 @@ def generate_quest(topic, num_questions):
         "max_tokens": 5000
     }
     
-    response = requests.post(url, json=payload)  #calls the FastAPI server /chat
-    if response.status_code != 200:
+    response = requests.post(url, json=payload) #calls the FastAPI server /chat
+    if response.status_code != 200:  #check if the request was successful
         return f"Error: {response.status_code} - {response.text}"
     
+    response = response.json() #convert the response to a JSON object
     try:
-        json_response = json.loads(response.content.decode("utf-8"))
+        json_response = json.loads(response["response"])   #gives back list of dictionaries with question, options, and answer
     except json.JSONDecodeError:
         return 'jsonError'
-    temp = json_response[0]
-    json_response = json.loads(temp)    
-
-    # print(json_response[0])
+    
+    return json_response  #return the list of questions dic's to the caller
+    # temp = json.loads(json_response)
+    print("hello")
+    # print(temp)
 
 if __name__ == "__main__":
     Quiz_GUI_QT6.main()
