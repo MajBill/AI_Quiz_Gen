@@ -15,68 +15,43 @@ class Question():
 questions = []
 radioButtons = []  # easier to reference them
 
-def initData(ui):  #for testing purposes
+def initData(ui, newQuestions): 
     '''
     Load the questions list with new questions from an AI model
-    using topic and number from pageHome.
+    newQuestions comes from the AI call
     '''
-    prompt = f"""You are a quiz generator. Your task is to Generate a list of {ui.txtMaxLength.toPlainText()} \
-multiple choice {ui.txtTopic.toPlainText()} quiz questions and format them into a python list \
-in the following format: ['question','correct_answer','Choices'[]]"""
-    '''
-    Here we will send this prompt to the AI Model and await a response
-
-    Now hard coded
-    later it will be filled with data from the AI call
-
-    expect a list as: 
-        question_list = 
-        [
-        ["What is the value of x in the equation x/2 + 3 = 7?", "4", ["1", "3", "5", "9"]],
-        ["What is the area of a triangle with base 10 cm and height 6 cm?", "60", ["40", "60", "80", "90"]],
-        ["What is the value of y in the equation y - 2 = 9?", "11", ["7", "9", "11", "13"]],
-        ["What is the perimeter of a polygon with 5 sides, each with length 8 cm?", "40", ["30", "40", "50", "60"]],
-        ["What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?", "48", ["32", "48", "64", "80"]]
-        ]
-
-    Read it into the questions class with:
-        for index, q in enumerate(question_list, start=1)
-            quest = Question()
-            quest.question = f"{q[0]}"
-            quest.answer = q[1]
-            quest.answerList = q[2]
-            questions.append(quest)
-    '''
+    questions.clear()     # this may be a 'new' set
+    for question in newQuestions:
     
-    quest = Question()
-    quest.question = "What is the value of x in the equation x/2 + 3 = 7?"
-    quest.answer = "4"
-    quest.answerList = ["1", "3", "5", "9"]
-    questions.append(quest)
+        quest = Question()
+        quest.question = question['question']
+        quest.answer = question['answer']
+        quest.answerList = question['choices']
+        questions.append(quest)
 
-    quest = Question()
-    quest.question = "What is the area of a triangle with base 10 cm and height 6 cm?"
-    quest.answer = "60"
-    quest.answerList = ["40", "60", "80", "90"]
-    questions.append(quest)
+    # quest = Question()
+    # quest.question = "What is the area of a triangle with base 10 cm and height 6 cm?"
+    # quest.answer = "60"
+    # quest.answerList = ["40", "60", "80", "90"]
+    # questions.append(quest)
 
-    quest = Question()
-    quest.question = "What is the value of y in the equation y - 2 = 9?"
-    quest.answer = "11"
-    quest.answerList =  ["7", "9", "11", "13"]
-    questions.append(quest)
+    # quest = Question()
+    # quest.question = "What is the value of y in the equation y - 2 = 9?"
+    # quest.answer = "11"
+    # quest.answerList =  ["7", "9", "11", "13"]
+    # questions.append(quest)
 
-    quest = Question()
-    quest.question = "What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
-    quest.answer = "40"
-    quest.answerList = ["30", "40", "50", "60"]
-    questions.append(quest)
+    # quest = Question()
+    # quest.question = "What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
+    # quest.answer = "40"
+    # quest.answerList = ["30", "40", "50", "60"]
+    # questions.append(quest)
 
-    quest = Question()
-    quest.question = "What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?"
-    quest.answer = "48"
-    quest.answerList = ["32", "48", "64", "80"]
-    questions.append(quest)
+    # quest = Question()
+    # quest.question = "What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?"
+    # quest.answer = "48"
+    # quest.answerList = ["32", "48", "64", "80"]
+    # questions.append(quest)
 
     # create list of radio button objects (indexed list is easier to use)
     radioButtons.clear()
@@ -198,7 +173,25 @@ def generate_quest(topic, num_questions):
     Send a request to the FastAPI server to generate quiz questions based on the provided topic and number of questions.
     '''
     url = "http://localhost:8000/chat"
-    prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}'"
+    # prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}' "
+    # prompt = f"You are a quiz generator. Your task is to Generate a list of {num_questions} multiple choice {topic} quiz questions and format them as follows: [['question','correct_answer','Choices'[]]] without a newline character"
+    prompt = '''You are a quiz generator.
+Return ONLY valid JSON.
+[
+  {
+    "question": "...",
+    "answer": "...",
+    "choices": ["...", "...", "...", "..."]
+  }
+]
+'''
+# have to break it here because of the curly braces above fucks with the 'f' string
+    prompt = prompt + f'''
+Generate exactly {num_questions} multiple-choice {topic} questions.
+
+Do not include Markdown.
+Do not include explanations.
+Do not include any text before or after the JSON.'''
     
     payload = {
         "prompt": prompt,
@@ -209,13 +202,32 @@ def generate_quest(topic, num_questions):
     if response.status_code != 200:  #check if the request was successful
         return f"Error: {response.status_code} - {response.text}"
     
-    response = response.json() #convert the response to a JSON object
+    # response = response.json() #convert the response to a JSON object
+   
     try:
-        json_response = json.loads(response["response"])   #gives back list of dictionaries with question, options, and answer
+        # json_response = json.loads(response["response"])   #gives back list of dictionaries with question, options, and answer
+        outer = response.json()     
+        questions=json.loads(outer["response"])
     except json.JSONDecodeError:
         return 'jsonError'
     
-    return json_response  #return the list of questions dic's to the caller
+    return questions  # returns a list of questions in dictionary form       #return the list of questions dic's to the caller
+   
+    ''' 
+len(questions)
+4
+
+questions[0]
+{'question': 'What is 2 + 2?', 'answer': '4', 'choices': ['1', '3', '4', '5']}
+
+questions[0]['question']
+'What is 2 + 2?'
+questions[0]['answer']
+'4'
+questions[0]['choices']
+['1', '3', '4', '5']
+'''
+   
     # temp = json.loads(json_response)
     print("hello")
     # print(temp)

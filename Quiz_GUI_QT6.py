@@ -51,9 +51,11 @@ def change_page(self, pageName):
         # qu.initData(self.ui)
         QTimer.singleShot(2000, lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.pageQuiz))  #does not freeze event loop
 
-        qu.generate_quest(self.ui.txtTopic.toPlainText(), int(self.ui.txtMaxLength.toPlainText()))
-        
+        questions = qu.generate_quest(self.ui.txtTopic.toPlainText(), int(self.ui.txtMaxLength.toPlainText()))
+        qu.initData(self.ui, questions)
         qu.dislayQuestion(self.ui)
+
+        
     else:
         self.ui.stackedWidget.setCurrentWidget(getattr(self.ui, pageName))
 
