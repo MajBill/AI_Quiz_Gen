@@ -26,32 +26,8 @@ def initData(ui, newQuestions):
         quest = Question()
         quest.question = question['question']
         quest.answer = question['answer']
-        quest.answerList = question['choices']
+        quest.answerList = question['options']
         questions.append(quest)
-
-    # quest = Question()
-    # quest.question = "What is the area of a triangle with base 10 cm and height 6 cm?"
-    # quest.answer = "60"
-    # quest.answerList = ["40", "60", "80", "90"]
-    # questions.append(quest)
-
-    # quest = Question()
-    # quest.question = "What is the value of y in the equation y - 2 = 9?"
-    # quest.answer = "11"
-    # quest.answerList =  ["7", "9", "11", "13"]
-    # questions.append(quest)
-
-    # quest = Question()
-    # quest.question = "What is the perimeter of a polygon with 5 sides, each with length 8 cm?"
-    # quest.answer = "40"
-    # quest.answerList = ["30", "40", "50", "60"]
-    # questions.append(quest)
-
-    # quest = Question()
-    # quest.question = "What is the volume of a rectangular prism with length 6 cm, width 4 cm, and height 2 cm?"
-    # quest.answer = "48"
-    # quest.answerList = ["32", "48", "64", "80"]
-    # questions.append(quest)
 
     # create list of radio button objects (indexed list is easier to use)
     radioButtons.clear()
@@ -68,13 +44,20 @@ def submit(ui):
     switch to results page
     '''
      # evealuate answers
+    review_text = 'Review:\n'
     score = 0    
-    for quest in questions:
-       if quest.guess == quest.answer:
+    for index,quest in enumerate(questions, start=1):
+        if quest.guess == quest.answer:
            score += 1
+        else:
+            review_text += f"{index}. {quest.question}\nYour answer: {quest.guess}  Correct answer: {quest.answer}\n\n"
 
+    result_text = f"Your score is: {score} / {len(questions)}\n" 
+    if score < len(questions):
+        result_text = result_text + review_text
+    
     # display score
-    ui.lblResults.setText(f"Your score is: {score} / {len(questions)}")  #replace with text edit for extended review text
+    ui.txtResults.setPlainText(result_text)  #replace with text edit for extended review text
     ui.stackedWidget.setCurrentWidget(ui.pageResults)
 
     # reset question pointer
@@ -173,25 +156,49 @@ def generate_quest(topic, num_questions):
     Send a request to the FastAPI server to generate quiz questions based on the provided topic and number of questions.
     '''
     url = "http://localhost:8000/chat"
-    # prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}' "
+    prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}'"
+    
+    payload = {
+        "prompt": prompt,
+        "max_tokens": 5000
+    }
+    
+    response = requests.post(url, json=payload)  #calls the FastAPI server /chat
+    if response.status_code != 200:
+        return f"Error: {response.status_code} - {response.text}"
+    
+    try:
+        json_response = json.loads(response.content.decode("utf-8"))
+    except json.JSONDecodeError:
+        return 'jsonError'
+    temp = json_response['response']
+    json_response = json.loads(temp)    
+    return json_response
+    # print(json_response[0])
+def generate_quest_bill(topic, num_questions):
+    '''
+    Send a request to the FastAPI server to generate quiz questions based on the provided topic and number of questions.
+    '''
+    url = "http://localhost:8000/chat"
+    prompt = f"Generate a list of {num_questions} multiple choice quiz questions on the topic '{topic}' "
     # prompt = f"You are a quiz generator. Your task is to Generate a list of {num_questions} multiple choice {topic} quiz questions and format them as follows: [['question','correct_answer','Choices'[]]] without a newline character"
-    prompt = '''You are a quiz generator.
-Return ONLY valid JSON.
-[
-  {
-    "question": "...",
-    "answer": "...",
-    "choices": ["...", "...", "...", "..."]
-  }
-]
-'''
-# have to break it here because of the curly braces above fucks with the 'f' string
-    prompt = prompt + f'''
-Generate exactly {num_questions} multiple-choice {topic} questions.
+#     prompt = '''You are a quiz generator.
+# Return ONLY valid JSON.
+# [
+#   {
+#     "question": "...",
+#     "answer": "...",
+#     "choices": ["...", "...", "...", "..."]
+#   }
+# ]
+# '''
+# # have to break it here because of the curly braces above fucks with the 'f' string
+#     prompt = prompt + f'''
+# Generate exactly {num_questions} multiple-choice {topic} questions.
 
-Do not include Markdown.
-Do not include explanations.
-Do not include any text before or after the JSON.'''
+# Do not include Markdown.
+# Do not include explanations.
+# Do not include any text before or after the JSON.'''
     
     payload = {
         "prompt": prompt,

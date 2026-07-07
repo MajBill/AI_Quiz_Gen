@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Quiz_GUI_QT.ui'
+## Form generated from reading UI file 'Quiz_GUI_QT6.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.11.1
 ##
@@ -16,9 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QLabel, QMainWindow,
-    QMenuBar, QPushButton, QRadioButton, QSizePolicy,
-    QStackedWidget, QStatusBar, QTextEdit, QVBoxLayout,
-    QWidget)
+    QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
+    QSizePolicy, QStackedWidget, QStatusBar, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -139,14 +139,13 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(50, 200, 241, 20))
         self.label_4.setFont(font)
-        self.lblResults = QLabel(self.pageResults)
-        self.lblResults.setObjectName(u"lblResults")
-        self.lblResults.setGeometry(QRect(60, 80, 431, 91))
-        self.lblResults.setFont(font)
         self.btnQuit_2 = QPushButton(self.pageResults)
         self.btnQuit_2.setObjectName(u"btnQuit_2")
         self.btnQuit_2.setGeometry(QRect(50, 320, 71, 26))
         self.btnQuit_2.setFont(font1)
+        self.txtResults = QPlainTextEdit(self.pageResults)
+        self.txtResults.setObjectName(u"txtResults")
+        self.txtResults.setGeometry(QRect(50, 50, 461, 141))
         self.stackedWidget.addWidget(self.pageResults)
 
         self.verticalLayout.addWidget(self.stackedWidget)
@@ -189,7 +188,6 @@ class Ui_MainWindow(object):
         self.btnTryNew.setText(QCoreApplication.translate("MainWindow", u"New set", None))
         self.btnTrySame.setText(QCoreApplication.translate("MainWindow", u"Same set", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Try again?", None))
-        self.lblResults.setText("")
         self.btnQuit_2.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
     # retranslateUi
 
