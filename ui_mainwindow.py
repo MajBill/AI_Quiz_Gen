@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Quiz_GUI_QT6.ui'
+## Form generated from reading UI file 'quiz_gui_qt6.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.11.1
 ##
@@ -71,12 +71,6 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.pageLoading)
         self.pageQuiz = QWidget()
         self.pageQuiz.setObjectName(u"pageQuiz")
-        self.lblQuestion = QLabel(self.pageQuiz)
-        self.lblQuestion.setObjectName(u"lblQuestion")
-        self.lblQuestion.setGeometry(QRect(80, 40, 471, 51))
-        self.lblQuestion.setFont(font)
-        self.lblQuestion.setTextFormat(Qt.TextFormat.RichText)
-        self.lblQuestion.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.btnQuit = QPushButton(self.pageQuiz)
         self.btnQuit.setObjectName(u"btnQuit")
         self.btnQuit.setGeometry(QRect(80, 290, 81, 26))
@@ -94,22 +88,22 @@ class Ui_MainWindow(object):
         self.buttonGroup_1.setObjectName(u"buttonGroup_1")
         self.buttonGroup_1.addButton(self.radioButton_3)
         self.radioButton_3.setObjectName(u"radioButton_3")
-        self.radioButton_3.setGeometry(QRect(80, 170, 200, 24))
+        self.radioButton_3.setGeometry(QRect(50, 170, 500, 24))
         self.radioButton_3.setFont(font)
         self.radioButton_4 = QRadioButton(self.pageQuiz)
         self.buttonGroup_1.addButton(self.radioButton_4)
         self.radioButton_4.setObjectName(u"radioButton_4")
-        self.radioButton_4.setGeometry(QRect(80, 200, 200, 24))
+        self.radioButton_4.setGeometry(QRect(50, 200, 500, 24))
         self.radioButton_4.setFont(font)
         self.radioButton_1 = QRadioButton(self.pageQuiz)
         self.buttonGroup_1.addButton(self.radioButton_1)
         self.radioButton_1.setObjectName(u"radioButton_1")
-        self.radioButton_1.setGeometry(QRect(80, 110, 200, 24))
+        self.radioButton_1.setGeometry(QRect(50, 110, 500, 24))
         self.radioButton_1.setFont(font)
         self.radioButton_2 = QRadioButton(self.pageQuiz)
         self.buttonGroup_1.addButton(self.radioButton_2)
         self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setGeometry(QRect(80, 140, 200, 24))
+        self.radioButton_2.setGeometry(QRect(50, 140, 500, 24))
         self.radioButton_2.setFont(font)
         self.btnSubmit = QPushButton(self.pageQuiz)
         self.btnSubmit.setObjectName(u"btnSubmit")
@@ -124,6 +118,10 @@ class Ui_MainWindow(object):
         self.lblProgress.setFont(font1)
         self.lblProgress.setTextFormat(Qt.TextFormat.RichText)
         self.lblProgress.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.txtQuestion = QPlainTextEdit(self.pageQuiz)
+        self.txtQuestion.setObjectName(u"txtQuestion")
+        self.txtQuestion.setGeometry(QRect(50, 10, 501, 91))
+        self.txtQuestion.setFont(font)
         self.stackedWidget.addWidget(self.pageQuiz)
         self.pageResults = QWidget()
         self.pageResults.setObjectName(u"pageResults")
@@ -174,7 +172,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Max Length:", None))
         self.btnConfirm.setText(QCoreApplication.translate("MainWindow", u"Confirm", None))
         self.btnClear.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
-        self.lblQuestion.setText("")
         self.btnQuit.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
         self.btnNext.setText(QCoreApplication.translate("MainWindow", u"Next", None))
         self.btnBack.setText(QCoreApplication.translate("MainWindow", u"Back", None))

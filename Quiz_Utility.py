@@ -44,7 +44,7 @@ def submit(ui):
     switch to results page
     '''
      # evealuate answers
-    review_text = 'Review:\n'
+    review_text = 'You missed the following questions:\n'
     score = 0    
     for index,quest in enumerate(questions, start=1):
         if quest.guess == quest.answer:
@@ -55,7 +55,8 @@ def submit(ui):
     result_text = f"Your score is: {score} / {len(questions)}\n" 
     if score < len(questions):
         result_text = result_text + review_text
-    
+    else:
+        result_text = result_text + "You answered all questions correctly."
     # display score
     ui.txtResults.setPlainText(result_text)  #replace with text edit for extended review text
     ui.stackedWidget.setCurrentWidget(ui.pageResults)
@@ -112,7 +113,7 @@ def dislayQuestion(ui):
     ui.buttonGroup_1.setExclusive(True)
 
     # display question and answers
-    ui.lblQuestion.setText(questions[ui.currentQuestion].question)
+    ui.txtQuestion.setPlainText(questions[ui.currentQuestion].question)
     for index in range(4):
         radioButtons[index].setText(questions[ui.currentQuestion].answerList[index])
 
