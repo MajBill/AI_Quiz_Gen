@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QLabel, QMainWindow,
     QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
-    QSizePolicy, QStackedWidget, QStatusBar, QTextEdit,
-    QVBoxLayout, QWidget)
+    QSizePolicy, QSpinBox, QStackedWidget, QStatusBar,
+    QTextEdit, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -52,9 +52,6 @@ class Ui_MainWindow(object):
         self.label_3.setGeometry(QRect(30, 170, 111, 41))
         self.label_3.setFont(font)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-        self.txtMaxLength = QTextEdit(self.pageHome)
-        self.txtMaxLength.setObjectName(u"txtMaxLength")
-        self.txtMaxLength.setGeometry(QRect(150, 180, 301, 31))
         self.btnConfirm = QPushButton(self.pageHome)
         self.btnConfirm.setObjectName(u"btnConfirm")
         self.btnConfirm.setGeometry(QRect(320, 260, 81, 26))
@@ -65,6 +62,10 @@ class Ui_MainWindow(object):
         self.btnClear.setObjectName(u"btnClear")
         self.btnClear.setGeometry(QRect(170, 260, 81, 26))
         self.btnClear.setFont(font1)
+        self.sbQuestions = QSpinBox(self.pageHome)
+        self.sbQuestions.setObjectName(u"sbQuestions")
+        self.sbQuestions.setGeometry(QRect(160, 180, 77, 26))
+        self.sbQuestions.setFont(font)
         self.stackedWidget.addWidget(self.pageHome)
         self.pageLoading = QWidget()
         self.pageLoading.setObjectName(u"pageLoading")
@@ -169,7 +170,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Please enter the topic for this quiz:", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Topic:", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Max Length:", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Questions", None))
         self.btnConfirm.setText(QCoreApplication.translate("MainWindow", u"Confirm", None))
         self.btnClear.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.btnQuit.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
